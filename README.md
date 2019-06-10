@@ -19,7 +19,11 @@ npm install -g @vue/cli
 ```
 ## Create Your Project
 ##### Create Your Project - option 1 -The Lazy way (the smart way?)
-Clone this project. For more information on Git cloning check out the documentation on GitHub. Once the project is cloned you can jump down a few sections in this document until you reach the section on 'Generalized Setup Information.' If you need more guidance, jump back up a bit to the section on 'Running the Project.'
+Clone or download this project. For more information on Git cloning check out the documentation on GitHub.
+
+If your goal is to use this project as the base for a new project, the best path is to use the 'Download ZIP' option found under the 'Clone of download' button on the repository main page. The ZIP file has the .git file removed, and will allow you to 'git init' and then upload this project into a new repository with a clean git history.
+
+Once the project is cloned or downloaded you can jump down a few sections in this document until you reach the section on 'Generalized Setup Information.' If you need more guidance, jump back up a bit to the section on 'Running the Project.'
 
 ##### Create Your Project - option 2 -The Step by Step Way
 This section will lead you through creating a Vue project that utilizes the US Web Design System (USWDS) and the standard USGS headers and footers.
