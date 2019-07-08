@@ -1,7 +1,7 @@
 <template>
     <div id="visualization">
+        <h1>{{ title }}</h1>
         <img alt="USGS Logo" src="../assets/USGS_logo_green.svg">
-        <h1>{{ msg }}</h1>
     </div>
 </template>
 
@@ -9,7 +9,10 @@
     export default {
         name: 'Visualization',
         props: {
-            msg: String
+            title: {
+                type: String,
+                default: 'Add your title in App.vue or hide this with CSS'
+            }
         }
     }
 </script>
