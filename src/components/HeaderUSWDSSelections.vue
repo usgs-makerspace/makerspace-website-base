@@ -5,7 +5,7 @@
             <div class="usa-nav-container">
                 <div class="usa-navbar">
                     <div class="usa-logo" id="basic-logo">
-                        <em class="usa-logo__text"><a href="/" title="Home" aria-label="Home">{{ titleForSelectionHeader }}</a></em>
+                        <em class="usa-logo__text"><a href="/" title="Home" aria-label="Home">{{ title }}</a></em>
                     </div>
                     <button class="usa-menu-btn">Menu</button>
                 </div>
@@ -50,7 +50,10 @@
     export default {
         name: 'HeaderUSWDS',
         props: {
-             titleForSelectionHeader: String
+            title: {
+                type: String,
+                default: 'Add your title in App.vue or hide this with CSS'
+            }
         }
     }
 </script>

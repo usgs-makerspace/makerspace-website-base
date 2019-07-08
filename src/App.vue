@@ -2,8 +2,8 @@
   <div id="app">
     <HeaderUSWDSBanner></HeaderUSWDSBanner>
     <HeaderUSGS></HeaderUSGS>
-    <HeaderUSWDSSelections titleForSelectionHeader="Any Project Name Here"></HeaderUSWDSSelections>
-    <Visualization msg="Another Intuitive and Informative Visualization"/>
+    <HeaderUSWDSSelections title="Project Name Here"></HeaderUSWDSSelections>
+    <Visualization title="Add Title Here"/>
     <FooterUSGS></FooterUSGS>
   </div>
 </template>
