@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "core-js": "^2.6.5",
-    "uswds": "^2.0.2",
+    "uswds": "^2.0.3",
     "vue": "^2.6.10"
   },
   "devDependencies": {
