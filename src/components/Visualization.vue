@@ -1,8 +1,8 @@
 <template>
-    <div id="visualization">
-        <h1>{{ title }}</h1>
-        <img alt="USGS Logo" src="../assets/USGS_logo_green.svg">
-    </div>
+  <div id="visualization">
+    <h1>{{ title }}</h1>
+
+  </div>
 </template>
 
 <script>
@@ -11,7 +11,7 @@
         props: {
             title: {
                 type: String,
-                default: 'Add your title in App.vue or hide this with CSS'
+                default: 'Add your title in App.vue'
             }
         }
     }
