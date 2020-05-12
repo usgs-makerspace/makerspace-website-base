@@ -23,7 +23,7 @@
     "core-js": "^3.6.4",
     "dns": "^0.2.2",
     "mapbox-gl": "^1.8.1",
-    "uswds": "^2.5.1",
+    "uswds": "^2.7.0",
     "vue": "^2.6.11",
     "vue-analytics": "^5.22.1",
     "vue-browser-detect-plugin": "^0.1.8",
