@@ -55,4 +55,9 @@
       flex-direction: column;
     }
   }
+  /* aline the usa banner with usgs logo */
+  .usa-banner__inner {
+    margin-left: 10px;
+    padding-left: 5px;
+  }
 </style>
