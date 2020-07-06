@@ -2,7 +2,10 @@
   <div id="app">
     <HeaderUSWDSBanner />
     <HeaderUSGS />
-    <router-view :is-internet-explorer="isInternetExplorer" />
+    <router-view
+      v-if="checkIfUSGSHeaderIsRendered"
+      :is-internet-explorer="isInternetExplorer"
+    />
     <FooterUSGS />
   </div>
 </template>
@@ -22,6 +25,11 @@
         data() {
             return {
                 isInternetExplorer: false,
+            }
+        },
+        computed: {
+            checkIfUSGSHeaderIsRendered() {
+                return this.$store.state.usgsHeaderRendered;
             }
         },
         created() {

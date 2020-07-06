@@ -1,7 +1,6 @@
 <template>
   <div id="visualization">
     <h1>{{ title }}</h1>
-
   </div>
 </template>
 
@@ -11,7 +10,7 @@
         props: {
             title: {
                 type: String,
-                default: 'Add your title in App.vue'
+                default: process.env.VUE_APP_TITLE
             }
         }
     }
