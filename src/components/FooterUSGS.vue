@@ -129,27 +129,164 @@
 </script>
 
 <style scoped lang="scss">
-  @import"../style/usgsHeaderFooter/combinedLoad.css";
+  footer, #navbar {
+    font-family: 'Source Sans Pro',sans-serif;
+    margin: 0;
+    position: relative;
+  }
+
+  *, *:before, *:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+
+  footer {
+    display: block;
+  }
+
+  .tmp-container {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  .tmp-container a {
+    text-decoration: none;
+    background: transparent;
+  }
+  .tmp-container a:-webkit-any-link {
+    cursor: auto;
+  }
+  .tmp-container:before, .tmp-container:after {
+    content: " ";
+    display: table;
+  }
+  .tmp-container:after {
+    clear: both;
+  }
+
+  hr {
+    width: 100%;
+    margin-top: 42px;
+  }
+  @media only screen and (max-width:490px) {
+    hr {
+      margin-top: 60px;
+    }
+  }
+
+  input{line-height:normal}
+  input[type="search"]{-webkit-appearance:textfield;-webkit-box-sizing:content-box;-moz-box-sizing:content-box;box-sizing:content-box}
+  input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit-search-decoration{-webkit-appearance:none}
+  input,button{font-family:inherit;font-size:inherit;line-height:inherit}
+
+  /* footer (only) css */
+
+  .menu.nav {
+    margin-bottom: 0;
+    padding-left: 0;
+    list-style: none;
+  }
+
+  .nav:before, .nav:after {
+    content: none;
+  }
+  footer.footer {
+    background: #00264c;
+    padding-bottom: 0;
+    position: relative;
+    width: 100%;
+    border-top: 1px solid #E5E5E5;
+  }
+
+  footer.footer .footer-doi {
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  footer.footer .footer-doi ul.menu li a {
+    padding: 5px 0;
+    color: #ffffff;
+    float: left;
+    font-size: 12px;
+  }
+
+  footer.footer .footer-doi ul.menu li:first-of-type {
+    padding-left: 0;
+  }
+
+  footer.footer .footer-doi ul.menu li {
+    float: left;
+    padding-right: 2px;
+    padding-left: 5px;
+  }
+
+  footer.footer .footer-doi ul.menu li:after {
+    content: "|";
+    color: #ffffff;
+    float: left;
+    padding-top: 5px;
+    padding-left: 7px;
+    font-size: 12px;
+  }
+
+  footer.footer .footer-doi ul.menu li:last-child:after {
+    content: "";
+  }
+
+  footer.footer .footer-wrap .menu.nav a {
+    padding: 4px 0;
+    color: #ffffff;
+    font-size: 12px;
+  }
+
+  footer.footer .footer-social-links {
+    color: #ffffff;
+    font-size: 12px;
+    padding-right: 0;
+  }
+
+  footer.footer .footer-social-links ul {
+    float: right;
+    margin-top: 0;
+  }
+
+  footer.footer .footer-social-links ul li.follow {
+    padding-top: 6px;
+    padding-right: 5px;
+  }
+
+  footer.footer .footer-social-links ul li {
+    float: left;
+    height: 24px;
+    margin: 0 2px;
+    list-style: none;
+  }
+
+  footer.footer .footer-social-links ul li:last-of-type {
+    margin-right: 0px;
+  }
+
+  footer.footer .footer-social-links ul li a i {
+    color:#fff;
+    font-size: 24px;
+  }
+  #maincontent {
+    font-family: 'Source Sans Pro',sans-serif;
+    font-size: 14px;
+    line-height: 1.42857;
+    color: #333333;
+    background-color: #fff;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
 
   .svg-inline--fa {
     color: white;
     text-decoration: none;
     height: 24px;
     width: 21px;
-  }
-  /* Font Awesome Social Media icons */
-  /*!
-   *  Font Awesome 4.7.0 by @davegandy - http://fontawesome.io - @fontawesome
-   *  License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)
-   */
-  /* FONT PATH
-   * -------------------------- */
-  @font-face {
-    font-family: 'FontAwesome';
-    src: url('../fonts/usgsHeaderFooter/fontawesome-webfont.eot');
-    src: url('../fonts/usgsHeaderFooter/fontawesome-webfont.eot') format('embedded-opentype'), url('../fonts/usgsHeaderFooter/fontawesome-webfont.woff2') format('woff2'), url('../fonts/usgsHeaderFooter/fontawesome-webfont.woff') format('woff'), url('../fonts/usgsHeaderFooter/fontawesome-webfont.ttf') format('truetype'), url('../fonts/usgsHeaderFooter/fontawesome-webfont.svg') format('svg');
-    font-weight: normal;
-    font-style: normal;
   }
   .fa-wrapper {
     position: relative
