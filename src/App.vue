@@ -2,7 +2,10 @@
   <div id="app">
     <HeaderUSWDSBanner />
     <HeaderUSGS />
-    <router-view :is-internet-explorer="isInternetExplorer" />
+    <router-view
+      v-if="checkIfUSGSHeaderIsRendered"
+      :is-internet-explorer="isInternetExplorer"
+    />
     <FooterUSGS />
   </div>
 </template>
@@ -10,18 +13,24 @@
 <script>
     import HeaderUSWDSBanner from './components/HeaderUSWDSBanner'
     import HeaderUSGS from './components/HeaderUSGS'
-    import FooterUSGS from './components/FooterUSGS'
 
     export default {
         name: 'App',
         components: {
             HeaderUSWDSBanner,
             HeaderUSGS,
-            FooterUSGS
+            FooterUSGS: () => import( /* webpackPrefetch: true */ /*webpackChunkName: "usgs-footer"*/ "./components/FooterUSGS") // Have Webpack put the footer in a separate chunk so we can load it conditionally (with a v-if) if we desire
         },
         data() {
             return {
-                isInternetExplorer: false,
+                isInternetExplorer: false
+            }
+        },
+        computed: {
+            // Check if the header has rendered before loading other components
+            // note - this is an example pattern that can be used to control when any component loads in relation to other components
+            checkIfUSGSHeaderIsRendered() {
+                return this.$store.state.usgsHeaderRendered;
             }
         },
         created() {
