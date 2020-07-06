@@ -176,13 +176,6 @@
     }
   }
 
-  input{line-height:normal}
-  input[type="search"]{-webkit-appearance:textfield;-webkit-box-sizing:content-box;-moz-box-sizing:content-box;box-sizing:content-box}
-  input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit-search-decoration{-webkit-appearance:none}
-  input,button{font-family:inherit;font-size:inherit;line-height:inherit}
-
-  /* footer (only) css */
-
   .menu.nav {
     margin-bottom: 0;
     padding-left: 0;
