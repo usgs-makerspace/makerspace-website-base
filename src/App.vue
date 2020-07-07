@@ -3,7 +3,7 @@
     <WindowSize v-if="checkTypeOfEnv === '-test build-'" />
     <HeaderUSWDSBanner />
     <HeaderUSGS />
-    <WorkInProgressWarning v-if="checkReleaseState !== 'released'" />
+    <WorkInProgressWarning v-if="checkTypeOfEnv !== ''" /> <!-- an empty string in this case means the 'prod' version of the application   -->
     <router-view
       v-if="checkIfUSGSHeaderIsRendered"
       :is-internet-explorer="isInternetExplorer"
@@ -28,6 +28,8 @@
         },
         data() {
             return {
+                isDevelopmentBuild: process.env.NODE_ENV === 'development',
+                isProductionBuild: process.env.NODE_ENV === 'production',
                 isInternetExplorer: false
             }
         },
@@ -39,9 +41,6 @@
             },
             checkTypeOfEnv() {
                 return process.env.VUE_APP_TIER
-            },
-            checkReleaseState() {
-                return process.env.VUE_APP_RELEASE_STATE
             }
         },
         created() {
