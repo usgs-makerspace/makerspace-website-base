@@ -28,8 +28,6 @@
         },
         data() {
             return {
-                isDevelopmentBuild: process.env.NODE_ENV === 'development',
-                isProductionBuild: process.env.NODE_ENV === 'production',
                 isInternetExplorer: false
             }
         },
