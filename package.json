@@ -20,7 +20,7 @@
     "@fortawesome/vue-fontawesome": "^0.1.10",
     "core-js": "^3.6.5",
     "dns": "^0.2.2",
-    "mapbox-gl": "^1.11.0",
+    "mapbox-gl": "^1.11.1",
     "uswds": "^2.7.1",
     "vue": "^2.6.11",
     "vue-analytics": "^5.22.1",
