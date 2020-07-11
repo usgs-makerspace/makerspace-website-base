@@ -24,14 +24,7 @@
 
 <script>
     export default {
-        name: 'HeaderUSGS',
-        mounted() {
-            // The following code will only run after the entire 'intro' section has been rendered
-            // it will change the Vuex state so that other components will know the 'intro' section has loaded
-            this.$nextTick(function () {
-                this.$store.commit('changeBooleanStateWhenUSGSHeaderRendered');
-            });
-        }
+        name: 'HeaderUSGS'
     }
 </script>
 
