@@ -1,8 +1,8 @@
 <template>
   <div class="usa-prose">
     <p
-        v-if="buttonText === 'I understand'"
-        class="warning-open"
+      v-if="buttonText === 'I understand'"
+      class="warning-open"
     >
       ATTENTION! - You are viewing a prototype application that is in active development.
       Contents seen here are for place holding and development only. <strong>DO NOT USE</strong> information
