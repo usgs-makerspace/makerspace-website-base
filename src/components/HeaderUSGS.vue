@@ -1,20 +1,20 @@
 <template>
   <section id="usgs-header">
     <header
-        id="navbar"
-        class="header-nav"
-        role="banner"
+      id="navbar"
+      class="header-nav"
+      role="banner"
     >
       <div class="tmp-container">
         <a
-            class="logo-header"
-            href="https://www.usgs.gov/"
-            title="Home"
+          class="logo-header"
+          href="https://www.usgs.gov/"
+          title="Home"
         >
           <img
-              class="img"
-              src="@/assets/usgsHeaderAndFooter/images/logo.png"
-              alt="Home"
+            class="img"
+            src="@/assets/usgsHeaderAndFooter/images/logo.png"
+            alt="Home"
           >
         </a>
       </div>
