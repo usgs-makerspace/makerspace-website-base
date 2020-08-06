@@ -6,10 +6,10 @@
     <InternetExplorerPage v-if="isInternetExplorer" />
     <WorkInProgressWarning v-if="checkTypeOfEnv !== '' & !isInternetExplorer" /> <!-- an empty string in this case means the 'prod' version of the application   -->
     <router-view
-      v-if="!isInternetExplorer"
+      v-if="!isInternetExplorer & checkIfUSGSHeaderIsRendered"
     />
-    <PreFooterVisualizationsLinks v-if="checkIfIntroSectionIsRendered || !isInternetExplorer" />
-    <PreFooterCodeLinks v-if="checkIfIntroSectionIsRendered || !isInternetExplorer" />
+    <PreFooterVisualizationsLinks v-if="!isInternetExplorer" />
+    <PreFooterCodeLinks v-if="!isInternetExplorer" />
     <FooterUSGS />
   </div>
 </template>
@@ -37,9 +37,12 @@
             }
         },
         computed: {
-            checkTypeOfEnv() {
-                return process.env.VUE_APP_TIER
-            }
+          checkIfUSGSHeaderIsRendered() {
+            return this.$store.state.usgsHeaderRendered;
+          },
+          checkTypeOfEnv() {
+              return process.env.VUE_APP_TIER
+          }
         },
         created() {
             // We are ending support for Internet Explorer, so let's test to see if the browser used is IE.
