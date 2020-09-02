@@ -17,7 +17,7 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.30",
     "@fortawesome/free-brands-svg-icons": "^5.14.0",
     "@fortawesome/free-solid-svg-icons": "^5.14.0",
-    "@fortawesome/vue-fontawesome": "^0.1.10",
+    "@fortawesome/vue-fontawesome": "^2.0.0",
     "core-js": "^3.6.5",
     "dns": "^0.2.2",
     "mapbox-gl": "^1.12.0",
