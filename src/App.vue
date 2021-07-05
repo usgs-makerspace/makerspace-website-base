@@ -1,12 +1,11 @@
 <template>
   <div id="app">
-    <WindowSize v-if="checkTypeOfEnv === '-test build-'" />
-    <HeaderUSWDSBanner />
+    <!-- <WindowSize v-if="checkTypeOfEnv === '-test build-'" /> -->
     <HeaderUSGS />
     <InternetExplorerPage v-if="isInternetExplorer" />
     <WorkInProgressWarning v-if="checkTypeOfEnv !== '' & !isInternetExplorer" /> <!-- an empty string in this case means the 'prod' version of the application   -->
     <router-view
-      v-if="!isInternetExplorer & checkIfUSGSHeaderIsRendered"
+      v-if="!isInternetExplorer"
     />
     <PreFooterVisualizationsLinks v-if="!isInternetExplorer" />
     <PreFooterCodeLinks v-if="!isInternetExplorer" />
@@ -15,15 +14,13 @@
 </template>
 
 <script>
-    import WindowSize from "./components/WindowSize";
-    import HeaderUSWDSBanner from './components/HeaderUSWDSBanner'
-    import HeaderUSGS from './components/HeaderUSGS'
-
+    // import WindowSize from "./components/WindowSize";
+    import HeaderUSGS from './components/HeaderUSGS';
+    import { isMobile } from 'mobile-device-detect';
     export default {
         name: 'App',
         components: {
-            WindowSize,
-            HeaderUSWDSBanner,
+            // WindowSize,
             HeaderUSGS,
             InternetExplorerPage: () => import( /* webpackPrefetch: true */ /*webpackChunkName: "internet-explorer-page"*/ "./components/InternetExplorerPage"),
             WorkInProgressWarning: () => import( /* webpackPrefetch: true */ /*webpackChunkName: "work-in-progress-warning"*/ "./components/WorkInProgressWarning"),
@@ -33,13 +30,13 @@
         },
         data() {
             return {
-                isInternetExplorer: false
+                isInternetExplorer: false,
+                title: process.env.VUE_APP_TITLE,
+                publicPath: process.env.BASE_URL, // this is need for the data files in the public folder
+                mobileView: isMobile
             }
         },
         computed: {
-          checkIfUSGSHeaderIsRendered() {
-            return this.$store.state.usgsHeaderRendered;
-          },
           checkTypeOfEnv() {
               return process.env.VUE_APP_TIER
           }
@@ -54,37 +51,265 @@
         destroyed() {
             window.removeEventListener('resize', this.handleResize);
         },
-        methods: {
-            handleResize() {
+        methods:{
+          handleResize() {
                 this.$store.commit('recordWindowWidth', window.innerWidth);
                 this.$store.commit('recordWindowHeight', window.innerHeight);
-            }
+            },
         }
     }
 </script>
 
 <style lang="scss">
-  body{
-    margin: 0;
-    padding: 0;
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+ // IMPORT
+$nearBlack: #1a1b1c; //#1a1b1c;
+$frostyGreen: #90d3b5; // good contrast against black (original was #5e8a76)
+$deepGreen: #235845; // good contrast against white
+$frostyPurple: #C9ADE6;
+$deepPurple: #301546; // good contrast against black
+$lightGrey: #e5e4e6;
+$darkGrey: #e5e4e6;
+$familyMain: 'Public sans', sans-serif;
+$familySerif:  'Noto Serif', serif;
+$notWhite: white;
+// Type
+html,
+body {
+      height:100%;
+      margin: 0;
+      padding: 0;
+      color: $nearBlack;
+      background-color: $notWhite;
+      line-height: 1.2;
+      font-size: 16px;
+      font-family:$familySerif;
+      font-weight: 400;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      width: 100%;
+      @media screen and (max-width: 600px) {
+        font-size: 16px;
+      }
   }
-  #app {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
-    font-weight: 400;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    color: #2c3e50;
-    width: 100%;
+h1{
+  font-size: 3em;
+  font-weight: 600;
+  font-family: $familyMain;
+  line-height: 1;
+  text-align: left;
+  @media screen and (max-width: 600px) {
+    font-size: 5em;
+  }
+}
+
+h2{
+  color:$nearBlack;
+  font-weight: 600;
+  text-align: left;
+  font-family:$familyMain;
+  font-size: 1.3em;
+  margin-top: 5px;
+  line-height: 1.2;
+  @media screen and (max-width: 600px) {
+    font-size: 2em;
+  }
+}
+
+h3{
+  font-size: 1.5em;
+  color: $nearBlack;
+  padding-top: .5em;
+  font-family: $familyMain;
+  font-weight: 300;
+  @media screen and (max-width: 600px) {
+      font-size: 1.4em;
+  }  
+}
+
+p {
+  padding: 1em 0 0 0; 
+  color: $nearBlack;
+}
+
+.overall-title {
+  padding-top: 0vh;
+  margin: 0;
+  font-family: $familyMain;
+  font-size: 2em;
+  font-weight: 600;
+  text-align: center;
+  line-height: 1;
+  overflow-x: hidden;
+  @media screen and (max-width: 600px) {
+    font-size: 5em;
+    padding: 0 20px 0 20px;
+  }
+}
+
+.byline {
+  font-style: italic;
+  font-weight: 300;
+  font-size: .8em;
+  color: $nearBlack; 
+}
+
+  // General Layout  
+  section {
+    padding: 3em 0 3em 0;
   }
 
-  @media screen and (min-width: 601px){
-    body{
-      height: 100vh;
-    }
-    #app{
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
+
+  .text-content {
+    min-width: 300px;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 10px;   
+    @media screen and (max-width: 600px) {
+        padding: 10px;
+    }  
+  }
+  .flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    align-content: space-around;
+    max-width: 30%;
+    margin: auto;
+    @media screen and (max-width: 600px) {
+        max-width: 100%;
     }
   }
+
+  .flex-item {
+    padding: 20px;
+    min-width: 400px;
+    flex: 0 0 auto;
+    align-self: center;
+  }
+
+
+  @media (max-width: 600px) {
+    .flex-container {
+      flex-direction: column;
+    }
+    .flex-item {
+      flex: none;
+      padding: 0 0 1em 0;
+      height: 100%;
+    }
+  }
+
+  .figure-content {
+    border: 1px $notWhite;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    align-content: space-around;
+    max-width: 100%;
+    margin: auto;
+
+    @media screen and (max-width: 600px) {
+        padding: 0px; 
+    }
+
+  }
+
+
+.viz-title-wrapper {
+  max-width: 100%;
+  z-index: 100;
+  @media screen and (max-width: 600px) {
+        max-width: 90%;
+  }
+}
+
+.viz-title {
+  font-size: 1.4em;
+  font-weight: 700;
+  color: $nearBlack;
+  margin-bottom: 0;
+  @media screen and (max-width: 600px) {
+       font-size: 1.2em;
+       line-height: 1.2em;
+  }
+}
+
+.viz-subtitle {
+  color: $nearBlack;
+  font-size: .8em;
+  text-align: left;
+  font-weight: 100;
+  margin-bottom: 0;
+  @media screen and (max-width: 600px) {
+        font-size: .6em;
+  }
+}
+
+.legend-text {
+    fill: $nearBlack;
+    font-family: $familyMain;
+    font-size: 16px;
+  }
+
+.viz-comment {
+  font-family: $familyMain;
+  font-size: 26px;
+  font-weight: 400;
+  fill:rgb(224, 222, 222);
+}
+.viz-emph {
+  font-weight:700;
+  fill: $notWhite;
+  font-family: $familyMain;
+  font-size: 26px;
+}
+
+.emph {
+  font-weight: bold;
+}
+
+.italic {
+  font-style: italic;
+}
+
+.pseudo-caption {
+  font-size: .9em;
+  margin: 0 10px;
+}
+
+// Link Styling
+a:link { 
+  text-decoration: none;
+  font-weight: bold;
+  color: $nearBlack;
+  padding: 5px 0;
+} 
+a:visited { 
+  color: $nearBlack; 
+} 
+a:hover {
+  text-decoration:none;
+  text-shadow: 0 0 2px lightGrey;  
+  cursor: pointer;
+} 
+a:focus { 
+    text-shadow: 0 0 2px lightGrey;
+}
+a:active {
+  padding-top: 3px;
+}
+
+sup {
+  opacity: .4;
+}
+
+
+// v-img
+.content-v-img {
+  max-height: 80vh;
+}
 </style>
