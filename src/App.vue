@@ -1,12 +1,11 @@
 <template>
   <div id="app">
-    <WindowSize v-if="checkTypeOfEnv === '-test build-'" />
-    <HeaderUSWDSBanner />
+    <!-- <WindowSize v-if="checkTypeOfEnv === '-test build-'" /> -->
     <HeaderUSGS />
     <InternetExplorerPage v-if="isInternetExplorer" />
     <WorkInProgressWarning v-if="checkTypeOfEnv !== '' & !isInternetExplorer" /> <!-- an empty string in this case means the 'prod' version of the application   -->
     <router-view
-      v-if="!isInternetExplorer & checkIfUSGSHeaderIsRendered"
+      v-if="!isInternetExplorer"
     />
     <PreFooterVisualizationsLinks v-if="!isInternetExplorer" />
     <PreFooterCodeLinks v-if="!isInternetExplorer" />
@@ -15,15 +14,13 @@
 </template>
 
 <script>
-    import WindowSize from "./components/WindowSize";
-    import HeaderUSWDSBanner from './components/HeaderUSWDSBanner'
-    import HeaderUSGS from './components/HeaderUSGS'
-
+    // import WindowSize from "./components/WindowSize";
+    import HeaderUSGS from './components/HeaderUSGS';
+    import { isMobile } from 'mobile-device-detect';
     export default {
         name: 'App',
         components: {
-            WindowSize,
-            HeaderUSWDSBanner,
+            // WindowSize,
             HeaderUSGS,
             InternetExplorerPage: () => import( /* webpackPrefetch: true */ /*webpackChunkName: "internet-explorer-page"*/ "./components/InternetExplorerPage"),
             WorkInProgressWarning: () => import( /* webpackPrefetch: true */ /*webpackChunkName: "work-in-progress-warning"*/ "./components/WorkInProgressWarning"),
@@ -33,13 +30,13 @@
         },
         data() {
             return {
-                isInternetExplorer: false
+                isInternetExplorer: false,
+                title: process.env.VUE_APP_TITLE,
+                publicPath: process.env.BASE_URL, // this is need for the data files in the public folder
+                mobileView: isMobile
             }
         },
         computed: {
-          checkIfUSGSHeaderIsRendered() {
-            return this.$store.state.usgsHeaderRendered;
-          },
           checkTypeOfEnv() {
               return process.env.VUE_APP_TIER
           }
@@ -54,37 +51,15 @@
         destroyed() {
             window.removeEventListener('resize', this.handleResize);
         },
-        methods: {
-            handleResize() {
+        methods:{
+          handleResize() {
                 this.$store.commit('recordWindowWidth', window.innerWidth);
                 this.$store.commit('recordWindowHeight', window.innerHeight);
-            }
+            },
         }
     }
 </script>
 
 <style lang="scss">
-  body{
-    margin: 0;
-    padding: 0;
-  }
-  #app {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
-    font-weight: 400;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    color: #2c3e50;
-    width: 100%;
-  }
 
-  @media screen and (min-width: 601px){
-    body{
-      height: 100vh;
-    }
-    #app{
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-  }
 </style>

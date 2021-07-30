@@ -11,7 +11,7 @@ pipeline {
         gitParameter(name: 'BRANCH_TAG',
                      type: 'PT_BRANCH_TAG',
                      selectedValue: 'DEFAULT',
-                     defaultValue: 'origin/master')
+                     defaultValue: 'origin/main')
     }
 
     stages {
@@ -28,7 +28,7 @@ pipeline {
                           extensions: [],
                           gitTool: 'Default',
                           submoduleCfg: [],
-                          userRemoteConfigs: [[url: 'https://github.com/usgs-makerspace/CHANGE_THIS_TO_NAME_OF_PROJECT.git']]
+                          userRemoteConfigs: [[url: 'https://github.com/usgs-vizlab/CHANGE_THIS_TO_NAME_OF_PROJECT.git']]
                         ])
                 }
         }
